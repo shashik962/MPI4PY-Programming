@@ -1,0 +1,82 @@
+This document has all the required steps to setup a Raspberry Pi node for Supercomputing with MPICH2 and MPI4PY.
+
+If you are using a VGA Monitor then change the following lines in the /boot/config.txt
+
+Change #disable_overscan=1 	to 	disable_overscan=1
+Change #hdmi_force_hotplug=1 	to 	hdmi_force_hotplug=1
+Change #hdmi_group=1 		to 	hdmi_group=2
+Change #hdmi_mode=1 		to 	hdmi_mode=16
+Change #hdmi_drive=2 		to 	hdmi_drive=2
+Change #config_hdmi_boost=4 	to 	config_hdmi_boost=4
+
+Step 1: Install Fortran
+
+sudo apt-get install gfortran -y
+
+Step 2: Install MPICH
+
+Navigate to the home directory of pi with following command,
+cd ~
+
+Create a directory mpich,
+mkdir mpich
+
+Go to the diretory mpich,
+cd mpich
+
+Download the latest source of MPICH with wget command,
+wget http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz
+
+Now we have to compile and install from this source.
+Unpack the file with the following command,
+tar xfz mpich-3.2.tar.gz
+
+The command above extracts all the contents in the current directory under a subdirectory mpich-3.2.
+Run ls command to check if mpich-3.2 is created in current path.
+
+Go to the tmp directory now.
+cd /tmp
+
+Create a directory named as pi in this directory,
+mkdir pi
+
+Go to the directory pi with the following command,
+cd pi
+
+Create a directory mpi-build here,
+mkdir mpi-build
+
+Go to the directory mpi-build with the following command,
+cd mpi-build
+
+Run pwd command to verify the path. It should be as follows,
+/tmp/pi/mpi-build
+
+mpi-build is the build directory. We will use it for configuring the environment. We will complete the rest of process of installation from within the mpi-build directory.
+
+Create an installation directory for MPICH with the following command,
+sudo mkdir /home/pi/mpich-install
+
+
+sudo /home/pi/mpich/mpich-3.2/configure -prefix=/home/pi/mpich-install 2>&1 | tee c.txt
+
+sudo make VERBOSE=1 2>&1 | tee m.txt
+
+sudo make install 2>&1 | tee mi.txt
+
+After successful installation, we need to add the location /home/pi/mpich-install/bin to PATH variable. 
+
+/home/pi/mpich-install/bin has all the needed binary executable files of MPICH.
+
+Navigate to the home directory,
+cd ~
+
+Edit .bashrc file with the following command,
+nano .bashrc
+
+Add the following line in the end,
+PATH=$PATH:/home/pi/mpich-install/bin
+
+Save the file and exit. Close the lxterminal too.
+
+Next time we open the lxterminal, we will have the path /home/pi/mpich-install/bin MPICH binaries in the PATH variable.
