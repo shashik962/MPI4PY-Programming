@@ -79,4 +79,21 @@ PATH=$PATH:/home/pi/mpich-install/bin
 
 Save the file and exit. Close the lxterminal too.
 
-Next time we open the lxterminal, we will have the path /home/pi/mpich-install/bin MPICH binaries in the PATH variable.
+Next time we open the lxterminal, we will have the path /home/pi/mpich-install/bin in the PATH variable.
+
+Step 3: Install MPI4PY
+
+Navigate to the home directory,
+cd ~
+
+Download the latest source of MPI4PY by running the following command,
+wget https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-2.0.0.tar.gz
+
+Extract the source code by running the following command,
+tar zxf mpi4py-2.0.0.tar.gz
+
+The command above will extract the source code in the directory mpi4py-2.0.0. Navigate to the directory,
+cd mpi4py-2.0.0
+
+Run the following command to update the OS,
+sudo apt-get update --fix-missing
