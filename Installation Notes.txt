@@ -81,6 +81,9 @@ Save the file and exit. Close the lxterminal too.
 
 Next time we open the lxterminal, we will have the path /home/pi/mpich-install/bin in the PATH variable.
 
+Verify with the following command,
+mpiexec -n4 hostname
+
 Step 3: Install MPI4PY
 
 Navigate to the home directory,
@@ -97,3 +100,17 @@ cd mpi4py-2.0.0
 
 Run the following command to update the OS,
 sudo apt-get update --fix-missing
+
+Run the following sequence of commands to install MPI4PY for Python 3,
+sudo apt-get install python3-dev
+sudo python3 setup.py build --mpicc=/home/pi/mpich-install/bin/mpicc
+sudo python3 setup.py install
+
+Run the following sequence of commands to install MPI4PY for Python 2,
+sudo apt-get install python-dev
+sudo python setup.py build --mpicc=/home/pi/mpich-install/bin/mpicc
+sudo python setup.py install
+
+MPI4PY is now installed for Python 2 and Python 3.
+
+
