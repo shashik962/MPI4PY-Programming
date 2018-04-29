@@ -82,7 +82,7 @@ Save the file and exit. Close the lxterminal too.
 Next time we open the lxterminal, we will have the path /home/pi/mpich-install/bin in the PATH variable.
 
 Verify with the following command,
-mpiexec -n4 hostname
+mpiexec -n 4 hostname
 
 Step 3: Install MPI4PY
 
